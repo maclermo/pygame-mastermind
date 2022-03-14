@@ -23,12 +23,14 @@ class Utils:
         for color_index in range(5):
             if row_colors[color_index] is starting_colors[color_index]:
                 exact_matches += 1
-                starting_colors_copy.remove(starting_colors[color_index])
-                row_colors_copy.remove(row_colors[color_index])
+                row_colors_copy[color_index] = -1
+                starting_colors_copy[color_index] = -2
 
-        for color_index in range(0, len(row_colors_copy)):
+        for color_index in range(5):
             if starting_colors_copy[color_index] in row_colors_copy:
                 partial_matches += 1
+                row_colors_copy[color_index] = -1
+                starting_colors_copy[color_index] = -2
 
         black_pegs = [ScorePegColors.BLACK for _ in range(exact_matches)]
         white_pegs = [ScorePegColors.WHITE for _ in range(partial_matches)]
